@@ -1,0 +1,16 @@
+{
+  "rules": {
+    "no-var": "warn",
+    "prefer-const": "warn",
+    "no-empty": "warn",
+    "no-unused-vars": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "no-unused-vars": "warn"
+      }
+    }
+  ]
+}

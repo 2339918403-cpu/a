@@ -1,4 +1,6 @@
 :root {
+  --sans: 'Helvetica Neue', Arial, sans-serif;
+  --text: #ecf0f1;
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
   color-scheme: light dark;
