@@ -6,6 +6,7 @@ import Explosion from '../gameObjects/Explosion'
 type GameOverData = {
     result: 'win' | 'lose'
     timeLeft: number
+    score: number
 }
 
 export class Game extends Phaser.Scene {
@@ -148,7 +149,7 @@ export class Game extends Phaser.Scene {
         this.player.destroy()
 
         this.time.delayedCall(800, () => {
-            const data: GameOverData = { result, timeLeft: this.timeLeft }
+            const data: GameOverData = { result, timeLeft: this.timeLeft, score: this.score }
             this.scene.start('GameOver', data)
         })
     }

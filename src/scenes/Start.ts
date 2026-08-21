@@ -21,6 +21,16 @@ export class Start extends Phaser.Scene {
 
         const cx = this.scale.width * 0.5
 
+        // 最高分显示
+        const high = Number(localStorage.getItem('dodge60_highscore') || '0')
+        this.add.text(this.scale.width - 30, 30, `最高分: ${high}`, {
+            fontFamily: 'Ma Shan Zheng, cursive',
+            fontSize: '28px',
+            color: '#f1c40f',
+            stroke: '#000',
+            strokeThickness: 4,
+        }).setOrigin(1, 0).setDepth(50)
+
         // 标题
         this.add.text(cx, 200, '躲避60秒挑战', {
             fontFamily: 'Ma Shan Zheng, ZCOOL KuaiLe, cursive',

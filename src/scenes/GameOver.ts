@@ -3,6 +3,7 @@ import Phaser from 'phaser'
 type GameOverData = {
     result: 'win' | 'lose'
     timeLeft: number
+    score: number
 }
 
 export class GameOver extends Phaser.Scene {
@@ -43,6 +44,37 @@ export class GameOver extends Phaser.Scene {
             fontSize: '24px',
             color: '#ecf0f1',
         }).setOrigin(0.5)
+
+        // 最高分记录
+        const HIGHSCORE_KEY = 'dodge60_highscore'
+        const prevHigh = Number(localStorage.getItem(HIGHSCORE_KEY) || '0')
+        const isNewRecord = data.score > prevHigh
+        if (isNewRecord) {
+            localStorage.setItem(HIGHSCORE_KEY, String(data.score))
+        }
+        const highScore = Math.max(prevHigh, data.score)
+
+        this.add.text(cx, cy + 75, `本局得分: ${data.score}`, {
+            fontFamily: 'Arial, sans-serif',
+            fontSize: '26px',
+            color: '#f1c40f',
+        }).setOrigin(0.5)
+
+        this.add.text(cx, cy + 115, `最高分: ${highScore}`, {
+            fontFamily: 'Ma Shan Zheng, cursive',
+            fontSize: '30px',
+            color: '#ecf0f1',
+        }).setOrigin(0.5)
+
+        if (isNewRecord) {
+            this.add.text(cx, cy - 75, '★ 新纪录 ★', {
+                fontFamily: 'Ma Shan Zheng, cursive',
+                fontSize: '36px',
+                color: '#e74c3c',
+                stroke: '#fff',
+                strokeThickness: 4,
+            }).setOrigin(0.5)
+        }
 
         // 再来一局
         const restartBtn = this.add.text(cx, cy + 120, '再来一局', {
